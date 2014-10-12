@@ -1,0 +1,17 @@
+﻿Build started 10/11/2014 4:56:52 PM.
+     1>Project "C:\Users\Sebor\Desktop\Data Comm\COMP 3980\RFID Scanner\Assignment2\Assignment2\Assignment2.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt application.cpp
+         application.cpp
+     1>c:\users\sebor\desktop\data comm\comp 3980\rfid scanner\assignment2\assignment2\application.cpp(121): warning C4065: switch statement contains 'default' but no 'case' labels
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Sebor\Desktop\Data Comm\COMP 3980\RFID Scanner\Assignment2\Debug\Assignment2.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib stapi.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Sebor\Desktop\Data Comm\COMP 3980\RFID Scanner\Assignment2\Debug\Assignment2.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Sebor\Desktop\Data Comm\COMP 3980\RFID Scanner\Assignment2\Debug\Assignment2.lib" /MACHINE:X86 Debug\menu.res
+         Debug\application.obj
+         Debug\physical.obj
+         Debug\session.obj
+         Assignment2.vcxproj -> C:\Users\Sebor\Desktop\Data Comm\COMP 3980\RFID Scanner\Assignment2\Debug\Assignment2.exe
+     1>Done Building Project "C:\Users\Sebor\Desktop\Data Comm\COMP 3980\RFID Scanner\Assignment2\Assignment2\Assignment2.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.23
