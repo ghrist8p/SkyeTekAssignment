@@ -1,10 +1,5 @@
 #include "application.h"
 
-LRESULT CALLBACK WndProc( HWND
-						, UINT
-						, WPARAM
-						, LPARAM );
-
 int WINAPI WinMain( HINSTANCE hInst          //_In_  HINSTANCE hInstance,
 				  , HINSTANCE hprevInstance  //_In_  HINSTANCE hPrevInstance,
 				  , LPSTR lspszCmdParam      //_In_  LPSTR lpCmdLine,

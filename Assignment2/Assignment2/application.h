@@ -6,5 +6,10 @@
 #include "physical.h"
 #include "menu.h"
 
+LRESULT CALLBACK WndProc(HWND
+	, UINT
+	, WPARAM
+	, LPARAM);
+
 
 #endif

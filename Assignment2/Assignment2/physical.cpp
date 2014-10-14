@@ -9,7 +9,7 @@
 --
 -- REVISIONS: (Date and Description)
 --
--- DESIGNER: 
+-- DESIGNER: Sebastian Pelka A00870247 and Georgi Hristov A00795026  
 --
 -- PROGRAMMER: 
 --
@@ -36,15 +36,16 @@ Port::Port(HWND hWnd)
 /*------------------------------------------------------------------------------------------------------------------
 -- FUNCTION: open
 --
--- DATE:
+-- DATE: October 11, 2014
 --
 -- REVISIONS: (Date and Description)
 --
--- DESIGNER:
+-- DESIGNER: Sebastian Pelka and Georgi Hristov A00795026  
 --
--- PROGRAMMER:
+-- PROGRAMMER: Sebastian Pelka
 --
--- NOTES:
+-- NOTES: Checks to see if a Skyetek device is connected to the computer. If a device is detected, searches for a
+		  reader. If a reader is detected, the function creates a thread, which calls the threadCallback function.
 ----------------------------------------------------------------------------------------------------------------------*/
 bool Port::open()
 {
@@ -90,15 +91,15 @@ bool Port::open()
 /*------------------------------------------------------------------------------------------------------------------
 -- FUNCTION: open
 --
--- DATE:
+-- DATE: October 8, 2014
 --
 -- REVISIONS: (Date and Description)
 --
--- DESIGNER:
+-- DESIGNER: Georgi Hristov and Sebastian Pelka
 --
--- PROGRAMMER:
+-- PROGRAMMER: Georgi Hristov
 --
--- NOTES:
+-- NOTES: Disconnects the host machine from the device and closes the connection, freeing the port
 ----------------------------------------------------------------------------------------------------------------------*/
 bool Port::close()
 {
