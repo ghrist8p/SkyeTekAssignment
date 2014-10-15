@@ -2,6 +2,7 @@
 #define APPLICATION_H
 
 #include <windows.h>
+#include <commctrl.h>
 #include "session.h"
 #include "physical.h"
 #include "menu.h"

@@ -2,3 +2,4 @@
 #define IDM_DISCONNECT					201
 #define IDM_HELP						203
 #define IDM_EXIT						204
+#define IDC_MAIN_STATUS                 205

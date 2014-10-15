@@ -8,6 +8,7 @@ int WINAPI WinMain( HINSTANCE hInst          //_In_  HINSTANCE hInstance,
 	char const Name[] = "RFID Scanner";
 
 	HWND hWnd;
+    HWND hStatus;
 	MSG Msg;
 	WNDCLASSEX windowClass;
 
@@ -41,6 +42,33 @@ int WINAPI WinMain( HINSTANCE hInst          //_In_  HINSTANCE hInstance,
 					   , NULL                 //_In_opt_  HMENU hMenu,
 					   , hInst                //_In_opt_  HINSTANCE hInstance,
 					   , NULL);               //_In_opt_  LPVOID lpParam
+
+    //status bar
+    InitCommonControls();
+
+    hStatus = CreateWindowEx( 0
+                            , STATUSCLASSNAME
+                            , NULL
+                            , WS_CHILD | WS_VISIBLE | SBARS_SIZEGRIP
+                            , 0
+                            , 0
+                            , 0
+                            , 0
+                            , hWnd
+                            , (HMENU)IDC_MAIN_STATUS
+                            , GetModuleHandle(NULL)
+                            , NULL);
+
+	int Statwidths[] = {150, -1};
+
+	SendMessage( hStatus
+               , SB_SETPARTS
+               , (WPARAM)( sizeof(Statwidths)/sizeof(int) )
+               , (LPARAM)Statwidths );
+	SendMessage( hStatus
+               , SB_SETTEXT
+               , 0
+               , (LPARAM)TEXT("Hello") );
 
 	//set up main objects
 	Console c;
