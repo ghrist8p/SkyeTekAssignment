@@ -104,7 +104,7 @@ bool Port::open()
 bool Port::close()
 {
 	connected = false;
-	Sleep(2000);
+	Sleep(4000);
 	SkyeTek_FreeReaders(lpsr, numOfReaders);
 	SkyeTek_FreeDevices(lpsd, numOfDevices);
 	return true;
@@ -212,6 +212,7 @@ unsigned char Port::SelectLoopCallback(LPSKYETEK_TAG lpTag, void *user)
 	else
 	{
 		thiz->prevTag = "";
+		PostMessage(thiz->sendMsgTo, WM_TAG_REMOVED, 0, 0);
 		return thiz->connected;
 	}
 }

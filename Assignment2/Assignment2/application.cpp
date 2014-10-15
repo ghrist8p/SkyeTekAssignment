@@ -36,7 +36,7 @@ int WINAPI WinMain( HINSTANCE hInst          //_In_  HINSTANCE hInstance,
 					   , WS_OVERLAPPEDWINDOW  //_In_      DWORD dwStyle,
 					   , 10                   //_In_      int x,
 					   , 10                   //_In_      int y,
-					   , 600                  //_In_      int nWidth,
+					   , 800                  //_In_      int nWidth,
 					   , 400                  //_In_      int nHeight,
 					   , NULL                 //_In_opt_  HWND hWndParent,
 					   , NULL                 //_In_opt_  HMENU hMenu,
@@ -68,7 +68,11 @@ int WINAPI WinMain( HINSTANCE hInst          //_In_  HINSTANCE hInstance,
 	SendMessage( hStatus
                , SB_SETTEXT
                , 0
-               , (LPARAM)TEXT("Hello") );
+               , (LPARAM)TEXT("Disconected") );
+	SendMessage( hStatus
+               , SB_SETTEXT
+               , 1
+               , (LPARAM)TEXT("No Tag") );
 
 	//set up main objects
 	Console c;
@@ -82,8 +86,7 @@ int WINAPI WinMain( HINSTANCE hInst          //_In_  HINSTANCE hInstance,
 					, sizeof(Console*)  //_In_  int nIndex,
 					, (LONG_PTR)&p );   //_In_  LONG_PTR dwNewLong
 		
-
-	//display window
+    //display window
 	ShowWindow(hWnd, nCmdShow);
 	UpdateWindow(hWnd);
 
@@ -112,27 +115,67 @@ LRESULT CALLBACK WndProc(HWND hWnd
 		switch( LOWORD(wParam) )
 		{
 		case IDM_CONNECT:
-			p->open();
+            if( p->open() )
+            {
+                SendMessage( GetDlgItem( hWnd, IDC_MAIN_STATUS )
+                           , SB_SETTEXT
+                           , 0
+                           , (LPARAM)TEXT("Connected") );
+            }
 			break;
 		case IDM_DISCONNECT:
-			p->close();
+            if( p->close() )
+            {
+                SendMessage( GetDlgItem( hWnd, IDC_MAIN_STATUS )
+                           , SB_SETTEXT
+                           , 0
+                           , (LPARAM)TEXT("Disconected") );
+            }
 			break;
 		case IDM_EXIT:
 			PostQuitMessage(0);
 			break;
+        case IDM_HELP:
+            MessageBox( NULL
+                      , "This is a simple RFID tag Scanner.\n"
+                        "To connect to a pluged-in SkyeTek device, press Connect.\n"
+                        "Place RFID tags over RFID reader to read it.\n"
+                        "When finished, press Disconnect, to disconnect and Exit.\n"
+                        "About:\n"
+                        "  Programmed and designed by:\n"
+                        "    Sebastian Pelka\n"
+                        "    Georgi Hristov"
+                      , "Help"
+                      , MB_OK );
+            break;
 		default:
-			MessageBox( NULL, "WM_COMMAND", "DEBUG", MB_OK );
+			MessageBox( NULL, "Uh oh...\nThis app seems to be incomplete.", "WM_CHAR", MB_OK );
 		}
 		break;
 
 	case WM_TAG_SCANNED: //when a char has been received
+        
+        SendMessage( GetDlgItem( hWnd, IDC_MAIN_STATUS )
+                   , SB_SETTEXT
+                   , 1
+                   , lParam );
+
 		for (char * i = (char*)lParam; *i != '\0'; ++i)
 			(*c).putChar(*i);
 		InvalidateRect(hWnd, NULL, TRUE);
 		//MessageBox(NULL, (char*)lParam, "WM_TAG_SCANNED", MB_OK);
 		break;
 
+    case WM_TAG_REMOVED:
+        
+        SendMessage( GetDlgItem( hWnd, IDC_MAIN_STATUS )
+                   , SB_SETTEXT
+                   , 1
+                   , (LPARAM)TEXT("No Tag") );
+        break;
+
 	case WM_PAINT: //when a window need to repaint
+    
 		(*c).paintConsole(hWnd);
 		break;
 
@@ -143,6 +186,11 @@ LRESULT CALLBACK WndProc(HWND hWnd
 			MessageBox( NULL, "WM_CHAR", "DEBUG", MB_OK );
 		}
 		break;
+
+    case WM_SIZE:
+
+        SendMessage( GetDlgItem( hWnd, IDC_MAIN_STATUS ), WM_SIZE, 0, 0 );
+        break;
 
 	case WM_DESTROY:
 		PostQuitMessage(0);

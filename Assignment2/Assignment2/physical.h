@@ -11,6 +11,7 @@
 #include "SkyeTek_C_API_4.2/Platform.h"
 
 #define WM_TAG_SCANNED ( WM_USER + 1 )
+#define WM_TAG_REMOVED ( WM_USER + 2 )
 
 class Port
 {
